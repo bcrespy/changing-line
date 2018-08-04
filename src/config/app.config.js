@@ -16,7 +16,7 @@ export default {
   hudToggleKey: 'h',
 
   // If the HUD is displayed or not by default 
-  hudDisplayed: true,
+  hudDisplayed: false,
 
   // Volume of the audio, updated by the volume control callback
   volume: 0.5,

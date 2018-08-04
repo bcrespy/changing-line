@@ -1,5 +1,6 @@
 import AnalyserConfig from '../config/analyser.config';
 import AppConfig from '../config/app.config';
+import VisualizerConfig from '../config/visualizer.config';
 
 
 export default [
@@ -76,5 +77,15 @@ export default [
       min: 0, max: 2000, step: 10
     },
   ],
+
+  [ 
+    "Visualizer settings",
+
+    {
+      object: VisualizerConfig,
+      property: "speed",
+      min: 0, max: 10, step: 0.5
+    }
+  ]
 
 ];
