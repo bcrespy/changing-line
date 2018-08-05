@@ -74,7 +74,7 @@ import { AudioSource } from './audiostream/audio-source';
 import { AudioStream } from './audiostream/audio-stream';
 import { AudioAnalyser } from './audioanalysis/audio-analyser';
 
-import { MovingPointsVisualizer } from './visualizer/moving-points-visualizer';
+import { Visualizer } from './visualizer/visualizer';
 
 import { HUD } from './hud/hud-controller';
 import { Stats } from './tools/stats';
@@ -99,7 +99,7 @@ let userSelection = new UserSelection( (selectionType, info) => {
 
   // 4- we instanciate the visualizer -in this case the helper- but this is where you
   //    would instanciate your own
-  let visualizer = new MovingPointsVisualizer();
+  let visualizer = new Visualizer();
 
   // 5- The timers 
   let startTimer = null,
