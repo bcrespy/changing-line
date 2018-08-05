@@ -14,6 +14,7 @@ export default {
   // coulour de fond du canvas 
   backgroundColor: "#1427ff",
 
-  // taille de la grille 
-  gridsize: 15
+  // infos sur la grille du bas 
+  gridsize: 15,
+  gridcolor: new Color( 255, 255, 255 ),
 };

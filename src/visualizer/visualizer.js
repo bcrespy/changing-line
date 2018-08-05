@@ -9,10 +9,12 @@
  * importante, plus le second point sera éloigné du premier 
  */
 
+import config from '../config/visualizer.config';
 
 import { AudioAnalysedDataForVisualization } from '../audioanalysis/audio-analysed-data';
-import config from '../config/visualizer.config';
 import { Vector2 } from 'three';
+
+import { Background } from './background';
 
 
 
@@ -21,13 +23,15 @@ export class Visualizer
   constructor()
   {
     // le canvas
-    this.canvas = document.querySelector("#fight-arena");
+    this.canvas = document.querySelector("canvas");
     this.context = this.canvas.getContext("2d");
 
     // on donne les dimensions au canvas
     this.canvas.width = config.area.width;
     this.canvas.height = config.area.height;
 
+    // le background 
+    this.background = new Background( this.context );
   }
 
 
@@ -53,20 +57,6 @@ export class Visualizer
    */
   draw( audioData, dTime )
   {
-    
-  }
-
-
-  /**
-   * Dessine un cercle de centre x, y et de couleur bg
-   * @param {number} x 
-   * @param {number} y 
-   */
-  drawCircle( x, y )
-  {
-    this.context.fillStyle = config.backgroundColor;
-    this.context.beginPath();
-    this.context.arc(x - this.translation.x, y - this.translation.y, config.circleRadius, 0, Math.PI*2 );
-    this.context.fill();
+    this.background.draw( audioData, dTime );
   }
 };

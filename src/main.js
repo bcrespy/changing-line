@@ -156,7 +156,7 @@ let userSelection = new UserSelection( (selectionType, info) => {
     
     // d) we ask the helper to draw the analysed data
     //    this is where we can send the data to a proper visualizer
-    visualizer.draw( analysedData, startTimer );
+    visualizer.draw( analysedData, deltaTime );
 
     // e) end of the stats monitoring
     lastFrameTimer = currentTimer;
