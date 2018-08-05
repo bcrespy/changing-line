@@ -23,6 +23,8 @@ export default {
 
   // taille d'un smiley
   particleSize: 30,
-  particleSpeed: 4,
+  particleSpeed: 7,
   particleSpeedVariation: 3,
+
+  framerate: 60,
 };

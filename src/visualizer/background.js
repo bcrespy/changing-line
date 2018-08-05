@@ -29,12 +29,20 @@ export class Background
    */
   draw( audioData, dTime )
   {
-    /*let alpha = ""+(1-audioData.peak.value);
+    let alpha = ""+(1-audioData.peak.value);
     alpha = alpha.substring(0,3);
-    this.context.fillStyle = "rgba(0, 255, 237, "+alpha+")";
-    this.context.fillRect(0,0,config.area.width, config.area.height);*/
+    this.context.fillStyle = "rgba(189, 189, 189, "+alpha+")";
+    this.context.fillRect(0,0,config.area.width, config.area.height);
+
+    this.context.restore();
+    this.context.save();
+
+    if( audioData.peak.value > 0 )
+    {
+      this.context.translate( 4*audioData.peak.value, 12*audioData.peak.value );
+    }
     
-    this.context.clearRect( 0, 0, config.area.width, config.area.height );
+    //this.context.clearRect( 0, 0, config.area.width, config.area.height );
 
     // le dessin de la grille qui avance vers la gauche 
     this.drawgrid( audioData, dTime );

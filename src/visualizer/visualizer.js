@@ -83,7 +83,7 @@ export class Visualizer
         this.particles.push(
           new Particle( 
             new Vector2(config.area.width/2, config.area.height/2),
-            Math.PI + Math.random() * Math.PI,
+            7*Math.PI/6 + Math.random() * Math.PI/2,
             config.particleSpeed + Math.random() * config.particleSpeedVariation,
             this.context,
             this.imgLoader.getRandomImage()
@@ -93,10 +93,12 @@ export class Visualizer
     });
 
     // on affiche les particles 
-    this.particles.forEach( (particle, index) => {
+    for( let i = this.particles.length-1; i >= 0; i-- )
+    {
+      let particle = this.particles[i];
       if( !particle.draw() )
-        this.particles.splice(index, 1);
-    });
+        this.particles.splice(i, 1);
+    }
 
     // dessin de l'interface 
     this.interface.draw();
