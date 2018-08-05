@@ -29,15 +29,17 @@ export class Background
    */
   draw( audioData, dTime )
   {
+    /*let alpha = ""+(1-audioData.peak.value);
+    alpha = alpha.substring(0,3);
+    this.context.fillStyle = "rgba(0, 255, 237, "+alpha+")";
+    this.context.fillRect(0,0,config.area.width, config.area.height);*/
+    
     this.context.clearRect( 0, 0, config.area.width, config.area.height );
-
-    this.context.strokeStyle = "red";
-    this.context.strokeRect( 0, 0, config.area.width, config.area.height );
 
     // le dessin de la grille qui avance vers la gauche 
     this.drawgrid( audioData, dTime );
 
-    this.timer+= dTime;
+    this.timer+= config.scrollSpeed * dTime / 1000;
   }
 
 

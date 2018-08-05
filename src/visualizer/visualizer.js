@@ -15,7 +15,11 @@ import { AudioAnalysedDataForVisualization } from '../audioanalysis/audio-analys
 import { Vector2 } from 'three';
 
 import { Background } from './background';
-
+import { EnergyCurve } from './energy-curve';
+import { Color } from './color';
+import { Particle } from './particle';
+import { Interface } from './interface';
+import { ImagesLoader } from './images-loader';
 
 
 export class Visualizer 
@@ -32,6 +36,21 @@ export class Visualizer
 
     // le background 
     this.background = new Background( this.context );
+
+    this.curves = [
+      new EnergyCurve( this.context, new Color(255,0,255) ),
+      new EnergyCurve( this.context, new Color(0,0,255) ),
+      new EnergyCurve( this.context, new Color(255,0,0) ),
+      new EnergyCurve( this.context, new Color(255,255,0) )
+    ];
+
+    /**
+     * @type {Array.<Particle>}
+     */
+    this.particles = new Array();
+
+    this.interface = new Interface( this.context );
+    this.imgLoader = new ImagesLoader();
   }
 
 
@@ -42,9 +61,7 @@ export class Visualizer
   {
     return new Promise( (resolve, reject) => {
 
-      
-
-      resolve();
+      this.imgLoader.loadImages().then( resolve );
 
     });
   }
@@ -58,5 +75,30 @@ export class Visualizer
   draw( audioData, dTime )
   {
     this.background.draw( audioData, dTime );
+
+    this.curves.forEach( (curve, index) => {
+      if( curve.draw( audioData.multibandEnergy[index] / (audioData.multibandEnergyAverage[index]*0.5) ) )
+      {
+        // on spawn une particule 
+        this.particles.push(
+          new Particle( 
+            new Vector2(config.area.width/2, config.area.height/2),
+            Math.PI + Math.random() * Math.PI,
+            config.particleSpeed + Math.random() * config.particleSpeedVariation,
+            this.context,
+            this.imgLoader.getRandomImage()
+          )
+        );
+      }
+    });
+
+    // on affiche les particles 
+    this.particles.forEach( (particle, index) => {
+      if( !particle.draw() )
+        this.particles.splice(index, 1);
+    });
+
+    // dessin de l'interface 
+    this.interface.draw();
   }
 };

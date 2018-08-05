@@ -1,5 +1,5 @@
 body {
-  background: #1427ff;
+  background: #00007b;
 }
 
 #user-selection {
@@ -14,6 +14,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #bdbdbd;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 #scoreboard {
