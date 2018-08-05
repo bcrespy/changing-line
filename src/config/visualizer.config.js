@@ -27,4 +27,6 @@ export default {
   particleSpeedVariation: 3,
 
   framerate: 60,
+
+  translateStrength: 15,
 };

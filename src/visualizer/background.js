@@ -7,6 +7,8 @@ import config from '../config/visualizer.config';
 import { Vector2 } from 'three';
 import { AudioAnalysedDataForVisualization } from '../audioanalysis/audio-analysed-data';
 
+var gen = require('random-seed');
+
 
 
 export class Background 
@@ -39,7 +41,11 @@ export class Background
 
     if( audioData.peak.value > 0 )
     {
-      this.context.translate( 4*audioData.peak.value, 12*audioData.peak.value );
+      let rand = new gen(audioData.peak.timer).random() * Math.PI * 2,
+          translation = new Vector2( Math.cos(rand) * config.translateStrength, Math.sin(rand) * config.translateStrength );
+      translation.multiplyScalar( audioData.peak.value );
+      translation.multiplyScalar( audioData.peak.energy / 35 );
+      this.context.translate( translation.x, translation.y );
     }
     
     //this.context.clearRect( 0, 0, config.area.width, config.area.height );

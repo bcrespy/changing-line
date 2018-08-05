@@ -50,7 +50,7 @@ export class EnergyCurve
 
   curveFunc( x )
   {
-    return Math.pow(x, 2.2);
+    return Math.pow(x, 2);
   }
 
 

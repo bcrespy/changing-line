@@ -39,7 +39,7 @@ export class Visualizer
 
     this.curves = [
       new EnergyCurve( this.context, new Color(255,0,255) ),
-      new EnergyCurve( this.context, new Color(0,0,255) ),
+      new EnergyCurve( this.context, new Color(0,255,0) ),
       new EnergyCurve( this.context, new Color(255,0,0) ),
       new EnergyCurve( this.context, new Color(255,255,0) )
     ];
@@ -77,7 +77,7 @@ export class Visualizer
     this.background.draw( audioData, dTime );
 
     this.curves.forEach( (curve, index) => {
-      if( curve.draw( audioData.multibandEnergy[index] / (audioData.multibandEnergyAverage[index]*0.5) ) )
+      if( curve.draw( audioData.multibandEnergy[index] / (audioData.multibandEnergyAverage[index]*.7) ) )
       {
         // on spawn une particule 
         this.particles.push(
